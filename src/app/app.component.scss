@@ -1,3 +1,22 @@
 p {
   font-family: Lato;
 }
+
+.wrapper{
+  box-sizing: border-box;
+  position:relative;
+  border:1px solid darkred;
+  width:95%;
+  margin:auto;
+  height:20px;
+  overflow:hidden;
+}
+
+.indicator{
+  background-color:crimson;
+  height:100%;
+  top:0;
+  bottom:0;
+  left:0;
+  width:0%;
+}
