@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subject, interval, timer } from 'rxjs';
+import { Observable, Subject, interval, timer } from 'rxjs';
 import { takeWhile, takeUntil } from 'rxjs/operators/';
 
 @Component({
@@ -8,15 +8,17 @@ import { takeWhile, takeUntil } from 'rxjs/operators/';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  lenInMin = .33;
+  timer$;
+  reset$ = new Subject();
+
+  lenInMin = 1;
   lenInSeconds = 0;
   countdown = 0; // seconds
   percentComplete = 0;
   remaining = '0:00';
   width = '0%';
   completed = false;
-  timer$;
-  reset$ = new Subject();
+
 
   start() {
     this.lenInSeconds = this.lenInMin * 60;
@@ -32,20 +34,23 @@ export class AppComponent {
         this.countdown = count;
         this.updateWidth();
         this.updateRemaining();
-      }, () => {}, () => this.onComplete());
+      }, () => { }, () => this.onComplete());
   }
-  reset() {
+  reset(completed = false) {
     this.lenInSeconds = 0;
     this.countdown = 0;
     this.percentComplete = 0;
     this.remaining = '0:00';
     this.width = '0%';
     this.reset$.next();
+    if (completed) {
+      this.completed = true;
+    }
   }
 
   onComplete() {
-    this.completed = true;
-    this.reset();
+
+    this.reset(true);
   }
   updateWidth() {
     this.percentComplete = Math.round((this.countdown / this.lenInSeconds) * 100);
@@ -55,17 +60,16 @@ export class AppComponent {
   private updateRemaining() {
     const totalSecRemaining = (this.lenInSeconds - this.countdown);
 
-    if( totalSecRemaining < 0 ){
+    if (totalSecRemaining < 0) {
       return '0:00';
     }
 
-    const minRemaining = (Math.floor(totalSecRemaining / 60)).toString(); 
+    const minRemaining = (Math.floor(totalSecRemaining / 60)).toString();
     let secRemaining = (totalSecRemaining % 60).toString();
 
-    if(secRemaining.length === 1) {
+    if (secRemaining.length === 1) {
       secRemaining = '0' + secRemaining;
     }
-
 
     this.remaining = `${minRemaining}:${secRemaining}`;
   }
