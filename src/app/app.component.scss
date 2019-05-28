@@ -8,7 +8,7 @@ p {
   border:1px solid darkred;
   width:95%;
   margin:auto;
-  height:20px;
+  height:50px;
   overflow:hidden;
 }
 
@@ -19,4 +19,16 @@ p {
   bottom:0;
   left:0;
   width:0%;
+  white-space:nowrap;
+  padding: 10px 0;
 }
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+  mat-radio-button {
+    margin: 0 10px;
+  }
+}
+

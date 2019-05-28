@@ -1,8 +1,22 @@
-<button mat-button (click)="start()">Start</button>
-<h1>{{countdown}}, {{width}}, {{completed}}</h1>
+<label for="">Select time length: </label>
+<mat-radio-group class="radio-group" aria-label="Select an option" [(ngModel)]="lenInMin">
+    	<mat-radio-button value=".5">30 sec</mat-radio-button>
+  	<mat-radio-button value="1">1</mat-radio-button>
+	<mat-radio-button value="5">5</mat-radio-button>
+	<mat-radio-button value="10">10</mat-radio-button>
+	<mat-radio-button value="15">15</mat-radio-button>
+	<mat-radio-button value="20">20</mat-radio-button>
+	<mat-radio-button value="25">25</mat-radio-button>
+	<mat-radio-button value="30">30</mat-radio-button>
+  <button mat-flat-button color="primary" (click)="start()">Start</button>
+</mat-radio-group>
 
+ <br>
+<h2>Length: {{lenInMin}} minutes;</h2>
 <div class="wrapper" >
-<div class="indicator" [style.width]="width"></div>
+  <div class="indicator" [style.width]="width">
+    Remaining: {{remaining}}
+  </div>
 </div>
 <div *ngIf="completed" class="complete">
 <h3>
@@ -10,3 +24,5 @@ All done
 </h3>
 
 </div>
+
+<h1>{{lenInMin}}, {{countdown}}, {{width}}, {{completed}}</h1>

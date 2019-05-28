@@ -10,11 +10,15 @@ import { takeWhile } from 'rxjs/operators/';
 export class AppComponent {
   lenInMin = .33;
   lenInSeconds = 0;
-  countdown = 0;
+  countdown = 0; // seconds
   percentComplete = 0;
+  remaining = 0;
   width = '0%';
   completed = false;
   timer$;
+  setLength(lenInMinutes){
+
+  }
   start() {
     this.lenInSeconds = this.lenInMin * 60;
     this.timer$ = timer(0, 1000)
@@ -26,6 +30,7 @@ export class AppComponent {
       .subscribe((count) => {
         this.countdown = count;
         this.updateWidth();
+        this.updateRemaining();
       }, () => this.onError(), () => this.onComplete());
   }
   reset() {
@@ -42,6 +47,11 @@ export class AppComponent {
   updateWidth() {
     this.percentComplete = Math.round((this.countdown / this.lenInSeconds) * 100);
     this.width = this.percentComplete.toString() + '%';
+
     // this.width = Math.round( * 100 )  * .1;
+  }
+  updateRemaining() {
+    const result = (this.lenInSeconds - this.countdown);
+    this.remaining = result >= 0 ? result : 0;
   }
 }
