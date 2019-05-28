@@ -13,16 +13,22 @@ p {
 }
 
 .indicator{
+  position:absolute;
   background-color:crimson;
   height:100%;
   top:0;
   bottom:0;
   left:0;
   width:0%;
-  white-space:nowrap;
   padding: 10px 0;
+  z-index:50;
 }
-
+.remaining-text{
+  position:relative;
+  z-index:100;
+    white-space:nowrap;
+  color: #e9bbc4;
+}
 .radio-group {
   display: flex;
   flex-direction: row;

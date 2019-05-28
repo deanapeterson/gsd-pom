@@ -8,15 +8,17 @@
 	<mat-radio-button value="20">20</mat-radio-button>
 	<mat-radio-button value="25">25</mat-radio-button>
 	<mat-radio-button value="30">30</mat-radio-button>
-  <button mat-flat-button color="primary" (click)="start()">Start</button>
-</mat-radio-group>
 
+</mat-radio-group>
+  <button mat-flat-button color="primary" (click)="start()">Start</button>
+  <button mat-flat-button color="secondary" (click)="reset()">Reset</button>
  <br>
-<h2>Length: {{lenInMin}} minutes;</h2>
+<br>
 <div class="wrapper" >
   <div class="indicator" [style.width]="width">
-    Remaining: {{remaining}}
+
   </div>
+      <span class='remaining-text'>{{remaining}} remaining</span>
 </div>
 <div *ngIf="completed" class="complete">
 <h3>
@@ -25,4 +27,4 @@ All done
 
 </div>
 
-<h1>{{lenInMin}}, {{countdown}}, {{width}}, {{completed}}</h1>
+<!-- <h1>{{lenInMin}}, {{countdown}}, {{width}}, {{completed}}</h1> -->
