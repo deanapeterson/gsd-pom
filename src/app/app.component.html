@@ -1,7 +1,12 @@
 <button mat-button (click)="start()">Start</button>
-<h1>{{countdown}}</h1>
+<h1>{{countdown}}, {{width}}, {{completed}}</h1>
 
 <div class="wrapper" >
 <div class="indicator" [style.width]="width"></div>
 </div>
-{{width}}
+<div *ngIf="completed" class="complete">
+<h3>
+All done
+</h3>
+
+</div>

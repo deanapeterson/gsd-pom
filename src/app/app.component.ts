@@ -1,27 +1,47 @@
 import { Component } from '@angular/core';
-import { interval, timer} from 'rxjs';
+import { interval, timer } from 'rxjs';
+import { takeWhile } from 'rxjs/operators/';
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.scss' ]
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent  {
-  lenInMin = 1;
+export class AppComponent {
+  lenInMin = .33;
   lenInSeconds = 0;
   countdown = 0;
+  percentComplete = 0;
   width = '0%';
+  completed = false;
   timer$;
-  start () {
+  start() {
     this.lenInSeconds = this.lenInMin * 60;
     this.timer$ = timer(0, 1000)
-      .subscribe((count)=>{
+      .pipe(
+        takeWhile(() => {
+          return this.percentComplete <= 100;
+        })
+      )
+      .subscribe((count) => {
         this.countdown = count;
         this.updateWidth();
-      })
+      }, () => this.onError(), () => this.onComplete());
+  }
+  reset() {
+    this.lenInSeconds = 0;
+    this.countdown = 0;
+    this.percentComplete = 0;
+    this.width = '0%';
+    this.completed = false;
+  }
+  onError() { }
+  onComplete() {
+    this.completed = true;
   }
   updateWidth() {
-    const percentInt = Math.round((this.countdown / this.lenInSeconds) * 100);
-    this.width = percentInt.toString() + '%';
+    this.percentComplete = Math.round((this.countdown / this.lenInSeconds) * 100);
+    this.width = this.percentComplete.toString() + '%';
     // this.width = Math.round( * 100 )  * .1;
   }
 }
