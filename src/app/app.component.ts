@@ -10,18 +10,20 @@ import { takeWhile, takeUntil, filter } from 'rxjs/operators/';
 export class AppComponent {
   timer$;
   reset$ = new Subject();
-
-  lenInMin = 1;
+  completed$ = new Subject();
+  lenInMin = '.25';
   lenInSeconds = 0;
-  countdown = 0; // seconds
+  secElapsed = 0; // seconds
   percentComplete = 0;
   remaining = '0:00';
   width = '0%';
   completed = false;
   running = false;
   paused = false;
+
   start() {
-    this.lenInSeconds = this.lenInMin * 60;
+    this.reset();
+    this.lenInSeconds = parseFloat(this.lenInMin) * 60;
     this.completed = false;
     this.running = true;
     this.timer$ = timer(0, 1000)
@@ -33,18 +35,23 @@ export class AppComponent {
         })
       )
       .subscribe((count) => {
-        this.countdown = count;
+        this.secElapsed = this.secElapsed + 1;
         this.updateWidth();
         this.updateRemaining();
       }, () => { }, () => this.onComplete());
+
+
+
+
+
   }
   reset(completed = false) {
     this.lenInSeconds = 0;
-    this.countdown = 0;
+    this.secElapsed = 0;
     this.percentComplete = 0;
     this.remaining = '0:00';
     this.width = '0%';
-    this.running = false;
+
     this.reset$.next();
     if (completed) {
       this.completed = true;
@@ -52,16 +59,16 @@ export class AppComponent {
   }
 
   onComplete() {
-
-    this.reset(true);
+    this.completed = true;
+    this.running = false;
   }
   updateWidth() {
-    this.percentComplete = Math.round((this.countdown / this.lenInSeconds) * 100);
+    this.percentComplete = Math.round((this.secElapsed / this.lenInSeconds) * 100);
     this.width = this.percentComplete.toString() + '%';
   }
 
   private updateRemaining() {
-    const totalSecRemaining = (this.lenInSeconds - this.countdown);
+    const totalSecRemaining = (this.lenInSeconds - this.secElapsed);
 
     if (totalSecRemaining < 0) {
       return '0:00';
