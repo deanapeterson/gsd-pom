@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, Subject, interval, timer } from 'rxjs';
-import { takeWhile, takeUntil } from 'rxjs/operators/';
+import { takeWhile, takeUntil, filter } from 'rxjs/operators/';
 
 @Component({
   selector: 'my-app',
@@ -18,13 +18,15 @@ export class AppComponent {
   remaining = '0:00';
   width = '0%';
   completed = false;
-
-
+  running = false;
+  paused = false;
   start() {
     this.lenInSeconds = this.lenInMin * 60;
     this.completed = false;
+    this.running = true;
     this.timer$ = timer(0, 1000)
       .pipe(
+        filter(()=> !this.paused),
         takeUntil(this.reset$),
         takeWhile(() => {
           return this.percentComplete <= 100;
@@ -42,6 +44,7 @@ export class AppComponent {
     this.percentComplete = 0;
     this.remaining = '0:00';
     this.width = '0%';
+    this.running = false;
     this.reset$.next();
     if (completed) {
       this.completed = true;
