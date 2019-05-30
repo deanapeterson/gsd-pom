@@ -11,16 +11,24 @@
 	<mat-radio-button value="30">30</mat-radio-button>
 
 </mat-radio-group>
+ <br>
+<div class="indicator-wrapper" >
+  <div class="indicator" [style.width]="width"></div>
+  <div class='remaining-text'>
+          <span *ngIf="paused">PAUSED</span>
+      <span *ngIf="running" >{{remaining}} Remaining</span>
+      <span *ngIf="completed">Completed</span>
+
+  </div>
+
+</div>
+
+<hr>
+<div class="action-buttons">
   <button mat-flat-button *ngIf="!running" color="primary" (click)="start()">Start</button>
     <button mat-flat-button *ngIf="running" color="primary" (click)="paused = !paused">Pause</button>
   <button mat-flat-button color="secondary" (click)="reset()">Reset</button>
- <br>
-<br>
-<h1 *ngIf="paused">PAUSED</h1>
-<div class="wrapper" >
-  <div class="indicator" [style.width]="width"></div>
-      <span *ngIf="running" class='remaining-text'>{{remaining}} remaining</span>
-      <span *ngIf="completed" class='remaining-text'>Completed</span>
 </div>
+
 
 <!-- <h1>{{lenInMin}}, {{countdown}}, {{width}}, {{completed}}</h1> -->

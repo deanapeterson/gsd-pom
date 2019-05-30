@@ -9,4 +9,5 @@
 - switch radio to mini buttons
 - Layout sucks
 - increments are off.
+- closer to end toggle colors (toastmasters like)
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/gsd-pom)
