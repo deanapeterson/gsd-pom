@@ -3,7 +3,7 @@
 
 ## Tasks
 - move state props into a state object.
-
+- hide length options while running.
 
 ## ideas
 - switch radio to mini buttons
