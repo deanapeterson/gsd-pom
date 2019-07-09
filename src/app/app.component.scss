@@ -45,3 +45,24 @@ p {
 .action-buttons {
   text-align:center;
 }
+
+@keyframes background-pulse
+{
+     0% {
+          background-color:#fff;
+     }
+     100% {
+          background-color: #ff0000;
+     }
+       0% {
+          background-color:#fff;
+     }
+}
+
+.wrapper {
+  min-height: 600px;
+  background-color:yellow;
+}
+.completed-background {
+  animation: background-pulse .66s infinite;
+}

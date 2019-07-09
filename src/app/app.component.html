@@ -1,3 +1,7 @@
+<div class="wrapper" [ngClass]="{true:'completed-background'}[completed]" (click)="reset()">
+
+<div [ngStyle]="{display:(completed ? 'none' : 'block')}" (click)="$event.stopImmediatePropagation()">
+
 <mat-radio-group class="radio-group" aria-label="Select an option" [(ngModel)]="lenInMin">
 	<label for="">Select time length: </label>
   
@@ -32,8 +36,8 @@
     <button mat-flat-button *ngIf="running" color="primary" (click)="paused = !paused">Pause</button>
   <button mat-flat-button color="secondary" (click)="reset()">Reset</button>
 </div>
-<div *ngIf="completed">
 
-  </div>
+</div>
 
+</div>
 <!-- <h1>{{lenInMin}}, {{countdown}}, {{width}}, {{completed}}</h1> -->
