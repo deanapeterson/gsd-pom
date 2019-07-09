@@ -51,7 +51,7 @@ export class AppComponent {
     this.percentComplete = 0;
     this.remaining = '0:00';
     this.width = '0%';
-
+    this.completed = false;
     this.reset$.next();
     if (completed) {
       this.completed = true;
