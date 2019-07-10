@@ -59,9 +59,17 @@ p {
      }
 }
 
-.wrapper {
-  min-height: 600px;
-}
-.completed-background {
+
+.completed-overlay{
+  z-index: 1000;
+  position:absolute;
+  top:0;
+  width:100%;
+  height:100%;
   animation: background-pulse .66s infinite;
+  display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size:2em;
+    color:#fff;
 }

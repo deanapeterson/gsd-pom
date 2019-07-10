@@ -1,6 +1,6 @@
-<div class="wrapper" [ngClass]="{true:'completed-background'}[completed]" (click)="reset()">
-
-	<div [ngStyle]="{display:(completed ? 'none' : 'block')}" (click)="$event.stopImmediatePropagation()">
+<div class="wrapper" >
+  <button (click)="completed = true">Complete</button>
+	<div>
 
 		<mat-radio-group class="radio-group" aria-label="Select an option" [(ngModel)]="lenInMin">
 			<label for="">Select time length: </label>
@@ -34,6 +34,13 @@
   <button mat-flat-button color="secondary" (click)="reset()">Reset</button>
 </div>
 
+</div>
+
+</div>
+<div *ngIf="completed" class="completed-overlay" (click)="reset()">
+<div class="completed-inner">
+Completed <br>
+Click anywhere to reset
 </div>
 
 </div>
