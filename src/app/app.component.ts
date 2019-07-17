@@ -28,7 +28,7 @@ export class AppComponent {
     this.running = true;
     this.timer$ = timer(0, 1000)
       .pipe(
-        filter(()=> !this.paused),
+        filter(() => !this.paused),
         takeUntil(this.reset$),
         takeWhile(() => {
           return this.percentComplete <= 100;
@@ -61,6 +61,37 @@ export class AppComponent {
   onComplete() {
     this.completed = true;
     this.running = false;
+    // setTimeout(()=>{
+    //   window.alert('All Done');
+    // }, 100)
+
+    this.notify();
+
+  }
+  // https://devdocs.io/dom/notification
+  notify() {
+
+    // Let's check if the browser supports notifications
+    if (!("Notification" in window)) {
+      alert("This browser does not support desktop notification");
+    }
+
+    // Let's check whether notification permissions have already been granted
+    else if (Notification.permission === "granted") {
+      // If it's okay let's create a notification
+      var notification = new Notification("Hi there!");
+    }
+
+    // Otherwise, we need to ask the user for permission
+    else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(function (permission) {
+        // If the user accepts, let's create a notification
+        if (permission === "granted") {
+          var notification = new Notification("Times UP!!!!");
+        }
+      });
+    }
+
   }
   updateWidth() {
     this.percentComplete = Math.round((this.secElapsed / this.lenInSeconds) * 100);
