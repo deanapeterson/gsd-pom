@@ -2,6 +2,21 @@ import { Component } from '@angular/core';
 import { Observable, Subject, interval, timer } from 'rxjs';
 import { takeWhile, takeUntil, filter } from 'rxjs/operators/';
 
+const presets = [
+  [1, '1'],
+  [2, '2'],
+  [5, '5'],
+  [10, '10'],
+  [15, '15'],
+  [20, '20'],
+  [22, '22'],
+  [25, '25'],
+  [30, '30']
+];
+
+
+
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -20,10 +35,12 @@ export class AppComponent {
   completed = false;
   running = false;
   paused = false;
-
-  start() {
+  presets = presets;
+  selectedPreset: [] | null = null;
+  start(preset) {
     this.reset();
-    this.lenInSeconds = parseFloat(this.lenInMin) * 60;
+    this.selectedPreset = preset;
+    this.lenInSeconds = parseFloat(preset[0]) * 60;
     this.completed = false;
     this.running = true;
     this.timer$ = timer(0, 1000)

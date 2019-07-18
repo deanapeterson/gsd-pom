@@ -1,7 +1,21 @@
 p {
   font-family: Lato;
 }
+.wrapper {
+  padding:10px;
+}
 
+.preset-buttons{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  button {
+    margin:3px;
+
+  }
+
+}
 .indicator-wrapper{
   box-sizing: border-box;
   position:relative;
