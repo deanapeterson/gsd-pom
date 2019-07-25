@@ -5,6 +5,15 @@ p {
   padding:10px;
 }
 
+
+.grid-x {
+  display:flex;
+  justify-content: space-between;
+  > *{
+    width:50%;
+  }
+
+}
 .preset-buttons{
   display:flex;
   flex-direction: row;

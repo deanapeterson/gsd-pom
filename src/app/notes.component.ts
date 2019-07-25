@@ -9,7 +9,7 @@ const template = `
 const styles = [`
   textarea {
     width:99%;
-    min-height:60px;
+    min-height:100px;
   }
 `];
 @Component({

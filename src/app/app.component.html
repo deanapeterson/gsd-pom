@@ -1,14 +1,15 @@
 <div class="wrapper">
 	<div>
 		<div class="grid-x" *ngIf="!running">
-			<div class='cell large-6'>
+			<div class='cell'>
 				<h3>Select Time:</h3>
 				<div class='preset-buttons'>
 					<button *ngFor="let preset of presets" mat-stroked-button (click)="start(preset)">{{preset[1]}}</button>
         </div>
 
       </div>
-      <div class="cell large-6">
+      <div class="cell">
+        <h3>Notes:</h3>
         <app-notes></app-notes>
       </div>
     </div>
