@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Output, Input, OnInit} from '@angular/core';
 
 
 const template = `
-<textarea [(ngModel)]="note"></textarea>
-<br>
-<button (click)="updateStore()">Update</button>
+<textarea [(ngModel)]="note" (change)="updateStore()"></textarea>
 `;
 const styles = [`
   textarea {
@@ -17,13 +15,25 @@ const styles = [`
   template,
   styles
 })
-export class NotesComponent {
-  public note = '';
+export class NotesComponent implements OnInit {
+  @Input() note = '';
+  @Input() uid: string; 
+  
   private store: Storage;
-  private storageToken = 'gsd-pom';
+  private storageToken;
+
   constructor() {
     this.store = window.localStorage;
-    this.note = this.store.getItem(this.storageToken) || '';
+
+  }
+  ngOnInit() {
+    if(!this.uid) {
+      throw new Error('NotesComponent-> [uid] required');
+    }
+
+    this.storageToken = `gsd-pom_${this.uid}`;
+
+    this.note = this.store.getItem(this.storageToken);
   }
   public updateStore() {
     this.store.setItem(this.storageToken, this.note);
