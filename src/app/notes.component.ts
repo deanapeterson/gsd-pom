@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 
 
 const template = `
-<textarea (change)="updateStore()" ([ngModel])="note"></textarea>
-
+<textarea [(ngModel)]="note"></textarea>
+<br>
+<button (click)="updateStore()">Update</button>
 `;
 const styles = [`
-  app-notes{}
+  textarea {
+    width:99%;
+    min-height:60px;
+  }
 `];
 @Component({
   selector: 'app-notes',
@@ -19,9 +23,9 @@ export class NotesComponent {
   private storageToken = 'gsd-pom';
   constructor() {
     this.store = window.localStorage;
-    this.note = this.store.getItem(this.storageToken);
+    this.note = this.store.getItem(this.storageToken) || '';
   }
-  updateStore() {
+  public updateStore() {
     this.store.setItem(this.storageToken, this.note);
   }
 }
