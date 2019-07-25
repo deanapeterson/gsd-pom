@@ -14,9 +14,6 @@ const presets = [
   [30, '30']
 ];
 
-
-
-
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -24,6 +21,7 @@ const presets = [
 })
 export class AppComponent {
   timer$;
+  notes = '';
   reset$ = new Subject();
   completed$ = new Subject();
   lenInMin = '.25';
