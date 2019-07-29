@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Observable, Subject, interval, timer } from 'rxjs';
 import { takeWhile, takeUntil, filter } from 'rxjs/operators/';
 
@@ -35,6 +36,9 @@ export class AppComponent {
   paused = false;
   presets = presets;
   selectedPreset: [] | null = null;
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('GTD-POM-ADD-Timer');
+  }
   start(preset) {
     this.reset();
     this.selectedPreset = preset;
@@ -60,6 +64,9 @@ export class AppComponent {
 
 
   }
+  setTitle(content) {
+    this.titleService.setTitle(content);
+  }
   reset(completed = false) {
     this.lenInSeconds = 0;
     this.secElapsed = 0;
@@ -76,6 +83,7 @@ export class AppComponent {
   onComplete() {
     this.completed = true;
     this.running = false;
+    this.setTitle('Completed');
     // setTimeout(()=>{
     //   window.alert('All Done');
     // }, 100)
@@ -123,6 +131,7 @@ export class AppComponent {
     const minRemaining = (Math.floor(totalSecRemaining / 60)).toString();
     let secRemaining = (totalSecRemaining % 60).toString();
 
+    this.setTitle(`${minRemaining}:${secRemaining}`);
     if (secRemaining.length === 1) {
       secRemaining = '0' + secRemaining;
     }
