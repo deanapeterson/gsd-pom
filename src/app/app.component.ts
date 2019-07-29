@@ -35,9 +35,10 @@ export class AppComponent {
   running = false;
   paused = false;
   presets = presets;
+  title = 'GTD-POM-ADD-Timer';
   selectedPreset: [] | null = null;
   constructor(private titleService: Title) {
-    this.titleService.setTitle('GTD-POM-ADD-Timer');
+    this.setTitle();
   }
   start(preset) {
     this.reset();
@@ -64,8 +65,11 @@ export class AppComponent {
 
 
   }
-  setTitle(content) {
-    this.titleService.setTitle(content);
+  setTitle(content = '') {
+    if( content ){
+      content = content + ' | ';
+    }
+    this.titleService.setTitle(`${content}${this.title}`);
   }
   reset(completed = false) {
     this.lenInSeconds = 0;
