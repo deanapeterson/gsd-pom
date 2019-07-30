@@ -59,11 +59,6 @@ export class AppComponent {
         this.updateWidth();
         this.updateRemaining();
       }, () => { }, () => this.onComplete());
-
-
-
-
-
   }
   setTitle(content = '') {
     if( content ){
