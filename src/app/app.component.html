@@ -1,14 +1,42 @@
 <div class="wrapper">
-    <div>
-        <div class="grid-x"
-            *ngIf="!running">
-            <div class='cell'>
-                <h3>Select Time:</h3>
-                <div class='preset-buttons'>
-                    <button *ngFor="let preset of presets"
+	<div>
+		<div class="grid-x">
+			<div class='cell'>
+
+
+				<div *ngIf="!running">
+					<h3>Select Time:</h3>
+					<div class='preset-buttons'>
+						<button *ngFor="let preset of presets"
                         mat-stroked-button
                         (click)="start(preset)">{{preset[1]}}</button>
                 </div>
+              </div>
+              <div *ngIf="running">
+                            <h3>Running...</h3>
+        <div class="indicator-wrapper">
+
+            <div class="indicator"
+                [style.width]="width"></div>
+            <div class='remaining-text'>
+                <span *ngIf="paused">PAUSED - </span>
+                <span *ngIf="running">{{remaining}} Remaining</span>
+                <span *ngIf="completed">Completed</span>
+            </div>
+
+
+        </div>
+        <br>
+                    <div class="action-buttons">
+            <button mat-flat-button
+                *ngIf="running"
+                color="primary"
+                (click)="paused = !paused">Pause</button>
+            <button mat-flat-button
+                color="secondary"
+                (click)="reset()">Reset</button>
+            </div>
+              </div>
 
             </div>
             <div class="cell">
@@ -17,33 +45,9 @@
             </div>
         </div>
         <br>
-        <div class="indicator-wrapper"
-            *ngIf="running">
-            <div class="indicator"
-                [style.width]="width"></div>
-            <div class='remaining-text'>
-                <span *ngIf="paused">PAUSED - </span>
-                <span *ngIf="running">{{remaining}} Remaining</span>
-                <span *ngIf="completed">Completed</span>
 
-            </div>
-
-        </div>
 
         <hr>
-        <div class="action-buttons">
-            <button mat-flat-button
-                *ngIf="!running"
-                color="primary"
-                (click)="start()">Start</button>
-            <button mat-flat-button
-                *ngIf="running"
-                color="primary"
-                (click)="paused = !paused">Pause</button>
-            <button mat-flat-button
-                color="secondary"
-                (click)="reset()">Reset</button>
-        </div>
 
     </div>
 
