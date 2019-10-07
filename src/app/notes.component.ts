@@ -8,6 +8,9 @@ const styles = [`
   textarea {
     width:99%;
     min-height:100px;
+    font-family: sans-serif;
+    font-size: 18px;
+    line-height: 150%;
   }
 `];
 @Component({
