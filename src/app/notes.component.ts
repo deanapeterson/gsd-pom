@@ -6,7 +6,7 @@ const template = `
 `;
 const styles = [`
   textarea {
-    width:99%;
+    width:95%;
     min-height:100px;
     font-family: sans-serif;
     font-size: 18px;

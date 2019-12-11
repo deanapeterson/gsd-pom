@@ -51,6 +51,17 @@
         <hr>
 
     </div>
+<div class="grid-x grid-margin-x">
+  <div class="cell large-6">
+      <strong>Notes:</strong>
+      <app-notes [uid]="'notes'"></app-notes>
+  </div>
+<div class="cell large-6">
+      <strong>App Ideas:</strong>
+      <app-notes [uid]="'app_ideas'"></app-notes>
+</div>
+
+</div>
 
 </div>
 <div *ngIf="completed"
@@ -60,16 +71,5 @@
         COMPLETED!!! <br>
         Click anywhere to reset
     </div>
-
-</div>
-<div class="grid-x grid-margin-x">
-  <div class="cell large-6">
-      <strong>Notes</strong>
-      <app-notes [uid]="'notes'"></app-notes>
-  </div>
-<div class="cell large-6">
-      <strong>App Ideas</strong>
-      <app-notes [uid]="'app_ideas'"></app-notes>
-</div>
 
 </div>
