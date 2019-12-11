@@ -41,7 +41,7 @@
 
             </div>
             <div class="cell">
-                <h3>Notes:</h3>
+                <h3>Tasks:</h3>
                 <app-notes [uid]="'tasks'"></app-notes>
             </div>
         </div>
@@ -62,7 +62,14 @@
     </div>
 
 </div>
-<div style="background-color:#efefef; padding:10px;width:50%;float:right;">
+<div class="grid-x grid-margin-x">
+  <div class="cell large-6">
+      <strong>Notes</strong>
+      <app-notes [uid]="'notes'"></app-notes>
+  </div>
+<div class="cell large-6">
       <strong>App Ideas</strong>
       <app-notes [uid]="'app_ideas'"></app-notes>
+</div>
+
 </div>
