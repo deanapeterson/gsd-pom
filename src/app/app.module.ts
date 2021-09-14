@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from '../material-module';
 
 import { NotesComponent } from './notes.component';
-// import { TimerComponent } from './timer/timer.component';
+import { TimerComponent } from './timer/timer.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, MaterialModule],
-  declarations: [AppComponent, NotesComponent],
+  declarations: [AppComponent, NotesComponent, TimerComponent],
   providers: [Title],
   bootstrap: [AppComponent]
 })
